@@ -23,11 +23,11 @@
       <h2 class="text-center">Make your reservation</h2>
       <br>
       <div class="text-center">
-        <a href="table.html">
+        <a href="/table">
           <button class="btn btn-lg btn-primary">
             <span class="fa fa-list-alt"></span> View Tables</button>
         </a>
-        <a href="index.html">
+        <a href="/">
           <button class="btn btn-lg btn-default">
             <span class="fa fa-home"></span>
           </button>
@@ -98,9 +98,9 @@
     
 
     $.post("/api/tables", newReservation,
-      function(data) {
-
-        if (data) {
+      function(customers) {
+console.log('customers', customers)
+        if (customers.length<=5) {
           alert("Yay! You are officially booked!");
         }
 

@@ -24,8 +24,8 @@
       <br>
 
       <div class="text-center">
-        <a href="reservation.html"><button class="btn btn-lg btn-danger"><span class="fa fa-credit-card"></span> Make Reservation</button></a>
-        <a href="index.html"><button class="btn btn-lg btn-default"><span class="fa fa-home"></span></button></a>
+        <a href="/reservation"><button class="btn btn-lg btn-danger"><span class="fa fa-credit-card"></span> Make Reservation</button></a>
+        <a href="/"><button class="btn btn-lg btn-default"><span class="fa fa-home"></span></button></a>
       </div>
     </div>
 
@@ -73,18 +73,22 @@
  
 
   function runTableQuery() {
-    $.ajax({ url: "", method: "GET" })
+    $.ajax({ url: "/api/tables", method: "GET" })
       .then(function(tableData) {
 
         console.log(tableData);
         console.log("------------------------------------");
 
-        for (var i = 0; i < tableData.length; i++) {
+        var tablesNumber = 5;
+        if (tableData.length < 5) {
+          tablesNumber = tableData.length;
+        }
+
+        for (var i = 0; i < tablesNumber; i++) {
 
           var tableList = $("#tableList");
 
           var listItem = $("<li class='list-group-item mt-4'>");
-
           listItem.append(
             $("<h2>").text("Table #" + (i + 1)),
             $("<hr>"),
@@ -96,18 +100,17 @@
 
           tableList.append(listItem);
         }
+
+        if (tablesNumber === 5) {
+          runWaitListQuery(tableData);
+        }
       });
   }
 
-  function runWaitListQuery() {
+  function runWaitListQuery(waitData) {
 
-    $.ajax({ url: "", method: "GET" })
-      .then(function(waitData) {
-
-        console.log(waitData);
-        console.log("------------------------------------");
-
-        for (var i = 0; i < waitData.length; i++) {
+    
+        for (var i = 5; i < waitData.length; i++) {
 
           var waitList = $("#waitList");
 
@@ -123,14 +126,15 @@
           );
 
           waitList.append(listItem);
+
         }
-      });
+      
   }
 
   function clearTable() {
     alert("Clearing...");
 
-    $.ajax({ url: "/api/clear", method: "POST" }).then(function() {
+    $.ajax({ url: "/api/tables", method: "POST" }).then(function() {
       $("#waitList").empty();
       $("#tableList").empty();
     });
@@ -140,7 +144,7 @@
 
 
   runTableQuery();
-  runWaitListQuery();
+  // runWaitListQuery();
 
 
 </script>
