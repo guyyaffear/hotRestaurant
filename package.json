@@ -1,0 +1,23 @@
+{
+  "name": "hotrestaurant",
+  "version": "1.0.0",
+  "description": "hotres",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guyyaffear/hotRestaurant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guyyaffear/hotRestaurant/issues"
+  },
+  "homepage": "https://github.com/guyyaffear/hotRestaurant#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
